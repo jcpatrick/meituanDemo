@@ -96,12 +96,13 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     public void initPopupWindow(){
 //        initData();
-        View convertView = View.inflate(this,R.layout.pop,null);
-        popupWindow = new PopupWindow(convertView,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setFocusable(true);
+        View convertView = View.inflate(this,R.layout.pop,null);//获得要显示的下拉列表的布局
+        popupWindow = new PopupWindow(convertView
+                ,LinearLayout.LayoutParams.MATCH_PARENT
+                ,LinearLayout.LayoutParams.MATCH_PARENT);//根据该布局创建一个PopupWindow对象
+        popupWindow.setOutsideTouchable(true);//设置为外部可点击
+        popupWindow.setFocusable(true);//设置焦点
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setAnimationStyle(R.anim.shape_progress);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_account.setTextColor(Color.parseColor("#5a5959"));
             }
         });
+        //PopupWindow这个view的点击事件，这里主要是判断当点击PopupWindow中ListView之外的地方时，就隐藏掉Listview
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
